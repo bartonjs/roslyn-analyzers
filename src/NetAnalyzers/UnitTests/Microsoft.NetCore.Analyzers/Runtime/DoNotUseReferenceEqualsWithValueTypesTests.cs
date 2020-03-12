@@ -86,11 +86,11 @@ namespace TestNamespace
     {
         private static bool TestMethod(string test)
         {
-            return object.ReferenceEquals(test, IntPtr.Zero);
+            return object.ReferenceEquals(test, 4);
         }
     }
 }",
-                GetCSharpResultAt(10, 49, "objB", "System.IntPtr"));
+                GetCSharpResultAt(10, 49, "objB", "int"));
 
             await VerifyVB.VerifyAnalyzerAsync(@"
 Imports System
@@ -98,11 +98,11 @@ Imports System
 Namespace TestNamespace
 	Class TestClass
 		Private Shared Function TestMethod(test as String)
-            Return Object.ReferenceEquals(test, IntPtr.Zero)
+            Return Object.ReferenceEquals(test, 4)
 		End Function
 	End Class
 End Namespace",
-                GetVisualBasicResultAt(7, 49, "objB", "System.IntPtr"));
+                GetVisualBasicResultAt(7, 49, "objB", "Integer"));
         }
 
         [Fact]
